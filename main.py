@@ -29,7 +29,7 @@ TOP_K = get_config_value(config, 'palm', 'top_k', 40)
 
 
 
-@app.route("/", methods = ['POST', 'GET'])
+@app.route("/api/v1/generate", methods = ['POST', 'GET'])
 def main():
     if request.method == 'POST':
         input = request.form['input']
@@ -39,8 +39,7 @@ def main():
         response = get_response("Who are you and what can you do?")
 
     model = {"title": TITLE, "subtitle": SUBTITLE, "botname": BOTNAME, "message": response, "input": input}
-    return render_template('index.html', model=model)
-
+    return model
 
 def get_response(input):
     vertexai.init(location="us-central1")
