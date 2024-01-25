@@ -4,21 +4,34 @@
     <div class="container">
         <h1>{{model.title}}</h1>
         <h2>{{model.subtitle}}</h2>
-       
+
     </div>
 </div>
 <div class="container">
-    <div id="responses" class="alert alert-success" role="alert">
-       {{model.message}}
-    </div>
-
     <form method="POST">
-    <div class="form-group">
-        <label for="input">Ask {{model.botname}}:</label>
-        <input type="text" value="{{model.input}}" id="input" name="input" class="form-control" />
-    </div>
-    <div><input type="submit" class="btn btn-primary"></div>
-    </form>
-
+        <div class="form-group">
+            <label for="input">Ask {{model.botname}}:</label>
+            <input type="text" value="{{model.input}}" id="input" name="input" class="form-control" required />
+            <label class="temp">Select the temperature between 0.0 to 1.0
+                <input type="text" value="{{model.temperature}}" id="temperature" name="temperature"
+                    class="form-control" />
+        </div>
 </div>
+<div>
+    <button class="btn btn-primary" type="submit">Refresh</button>
+</div>
+</div>
+</form>
+<div class="container">
+<label>Blog Content :</label>
+<div id="responses" class="alert alert-success" role="alert">
+   <div> {{model.message | safe}} </div> 
+</div>
+<label>Alternate Blog Content:</label>
+<div id="alternate" class="alert alert-success" role="alert">
+    {{model.alternate | safe}}
+</div>
+</div>
+</div>
+
 {% endblock %}
