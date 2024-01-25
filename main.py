@@ -29,6 +29,19 @@ TOP_K = get_config_value(config, 'palm', 'top_k', 40)
 
 
 
+@app.route("/", methods = ['POST', 'GET'])
+def main():
+    if request.method == 'POST':
+        input = request.form['input']
+        response = get_response(input)
+    else: 
+        input = ""
+        response = get_response("Who are you and what can you do?")
+
+    model = {"title": TITLE, "subtitle": SUBTITLE, "botname": BOTNAME, "message": response, "input": input}
+    return render_template('index.html', model=model)
+
+
 @app.route("/api/v1/generate", methods = ['POST', 'GET'])
 def main():
     if request.method == 'POST':
